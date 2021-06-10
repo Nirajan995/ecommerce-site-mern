@@ -3,9 +3,12 @@ import colors from "colors";
 import dotenv from "dotenv";
 import connDB from "./config/db.js";
 import productRoutes from "./routes/productsRoutes.js";
+import userRoutes from "./routes/userRoutes.js"
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
+
+app.use(express.json());
 
 dotenv.config();
 
@@ -16,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 
